@@ -1,24 +1,54 @@
-# 📘서버 개발 프로젝트
-<br>
-<img align="right" width="420"
-     src="https://github.com/user-attachments/assets/dfd750c5-077d-4277-a8be-56e96834d667"
-     alt="Server" />
+# 📌프로젝트 개요
+<p align="center">
+  <img
+    width="800"
+    src="https://github.com/user-attachments/assets/fa86d4bc-949f-45dd-81ea-27795a1911d1"
+    alt="Server" />
+</p>
 
-- 개발 기간: 2023.02.24 ~ 2023.03.06 (10일)
-- 개발 인원: 1인
-- 핵심 요약: TCP 기반 통신 구조를 이해하고, 패킷 직렬화·역직렬화 모듈과  
-  링버퍼 기반 패킷 처리 구조를 구현한 서버 사이드 프로젝트입니다.
-- 개발 환경: Socket, C, VS2022, WireShark
+간단한 설명 추가
 
-<br clear="both"/>
+| 항목 | 내용 |
+|------|------|
+| 🕒 개발 기간 | 2023.02 ~ 2023.03 (40일) |
+| 👤 개발 인원 | 1명 |
+| 🧰 개발 환경 | C |
+| 🛠 실행 및 디버깅 툴 | VS2022, WireShark |
+| 📦 라이브러리 | Socket |
+
+</br>
 
 # 📘목차
+- [구현 내용](#구현-내용)
+- [핵심 주요 코드](#핵심-주요-코드)
 - [개발 계기](#개발-계기)
 - [아쉬웠던 점](#아쉬웠던-점)
 - [프로젝트에서 얻은 것](#프로젝트에서-얻은-것)
-- [구현 내용](#구현-내용)
 - [문제 해결 경험(트러블 슈팅)](#문제-해결-경험트러블-슈팅)
-- [핵심 주요 코드](#핵심-주요-코드)
+
+</br>
+
+# 📘구현 내용
+
+| 구현 내용 | 설명 |
+|-----------|------|
+| TCP 통신용 경량 패킷 모듈 | 고정 버퍼 기반 `<< / >>` 연산자 직렬화·역직렬화 처리 |
+| 패킷 처리용 링버퍼 자료구조 | 입력 버퍼 순환 처리 및 안정적인 스트림 관리 |
+| 패킷 헤더 파싱 & 브로드캐스트 | 이동·공격·데미지 처리 및 다수 클라이언트 동기화 |
+| 비정상 입력 유효성 검증 로직 | 좌표 연타 등 비정상 패킷 필터링 및 보안 처리 |
+
+</br>
+
+# 📘핵심 주요 코드
+- [링 버퍼 컨테이너](https://github.com/Myoungcholho/TCPFightServer/blob/master/TCPserializationFightProject/RingBuffer.cpp)
+- [패킷 직렬화 클래스](https://github.com/Myoungcholho/TCPFightServer/blob/master/TCPserializationFightProject/CPacket.h)
+- [서버 로직](https://github.com/Myoungcholho/TCPFightServer/blob/master/TCPserializationFightProject/main.cpp)
+
+| 코드 파일 | 코드 설명 |
+|----------|-----------|     
+| UAnimInstance [.h]() / [.cpp]() | 애니메이션 클립의 재생 시간과 상태를 관리하고, 블렌딩을 처리해 본 팔레트에 쓸 로컬 포즈를 만들어주는 실행기입니다. |
+
+</br>
 
 # 📘개발 계기
 
@@ -99,15 +129,6 @@
 
 링버퍼 컨테이너를 구현하기 위해 1일간 프로그램의 안정성을 검증한 결과는  
 프로그래머로써의 안전 문제를 직시하게됐습니다.
-
-
-# 📘구현 내용
-
-- TCP 통신용 경량 패킷 모듈 구현 (고정 버퍼 기반 << / >> 연산자 직렬화·역직렬화)
-- 패킷 처리를 위한 링버퍼 자료구조 구현
-- 패킷 헤더 파싱, 이동·공격·데미지 처리 및 브로드캐스트 기능
-- 좌표 연타 등 비정상 입력 유효성 검증 로직 구현
-
 
 # 📘문제 해결 경험(트러블 슈팅)
 
@@ -200,7 +221,3 @@
 또한 이 경험은 이후 언리얼 엔진의 객체 라이프사이클과 GC 방식에 대한 관심으로 이어져  
 더 견고한 구조 설계의 중요성을 이해하는 계기가 되었습니다.
 
-# 📘핵심 주요 코드
-- [링 버퍼 컨테이너](https://github.com/Myoungcholho/TCPFightServer/blob/master/TCPserializationFightProject/RingBuffer.cpp)
-- [패킷 직렬화 클래스](https://github.com/Myoungcholho/TCPFightServer/blob/master/TCPserializationFightProject/CPacket.h)
-- [서버 로직](https://github.com/Myoungcholho/TCPFightServer/blob/master/TCPserializationFightProject/main.cpp)
